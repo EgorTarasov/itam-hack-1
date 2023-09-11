@@ -3,4 +3,5 @@ __pycache__
 docker/data
 .env
 *.sql
-venv
+.pytest_cache/
+node_modules/

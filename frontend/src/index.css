@@ -1,0 +1,196 @@
+@import "hackCard.css";
+@import "auth.css";
+/* make navbar items align in center */
+/* add spacing between items */
+* {
+    font-family: "SF Pro Display", sans-serif;
+}
+
+p {
+    margin: 0;
+}
+.hero-title {
+    color: #fff;
+}
+.hero-title-first {
+    padding-left: 15rem;
+}
+.hero-title-second {
+    padding-left: 20rem;
+}
+.hero-title-third {
+    padding-left: 40rem;
+}
+
+.index-navbar {
+    display: flex;
+    justify-content: center;
+    padding-top: 1rem;
+    height: 80px;
+}
+
+.index-auth-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.index-auth-button {
+    margin: 12px;
+    display: flex;
+    width: 216px;
+    padding: 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: aliceblue;
+    border-radius: 16px;
+    border: 1px solid var(--Grey, #e1e1e1);
+    font-weight: bold;
+}
+.register {
+    background: rgba(255, 255, 255, 0.6);
+    color: #1e1d1c;
+}
+
+a {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.32);
+}
+
+/* remove  */
+.index-navbar-item {
+    margin-left: 30px;
+    margin-right: 30px;
+
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.index-body {
+    background: #1e1d1c;
+}
+
+.frame-851212522 {
+    width: 1440px;
+    height: 1442px;
+    overflow: hidden;
+    background: #1e1d1c;
+}
+.rectangle-193 {
+    width: 130.963px;
+    height: 130.926px;
+    transform: rotate(29.306deg);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.36);
+}
+.rectangle-194 {
+    width: 74.54px;
+    height: 74.505px;
+    transform: rotate(-166.274deg);
+    border-radius: 16px;
+    border: 0.829px solid rgba(255, 255, 255, 0.36);
+    flex-shrink: 0;
+}
+.rectangle-192 {
+    width: 74.54px;
+    height: 74.505px;
+    transform: rotate(-166.274deg);
+    border-radius: 16px;
+    border: 0.829px solid rgba(255, 255, 255, 0.36);
+    flex-shrink: 0;
+}
+
+.index-hero {
+    /* Rectangle 192 */
+
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: calc(50% - 200px / 2 - 53px);
+    top: 345.42px;
+
+    background: #9747ff;
+    filter: blur(200px);
+    border-radius: 90px;
+    transform: rotate(-45deg);
+}
+
+.index-hero-text {
+    display: flex;
+    margin: auto;
+    margin-top: 15vh;
+    margin-bottom: 5vh;
+    text-align: center;
+    max-width: 1200px;
+    font-size: 80px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    background: linear-gradient(
+        89deg,
+        #ff6d88 7.39%,
+        #ffa572 54.22%,
+        #c059ff 99.13%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* align index-hope to the right */
+.index-hope {
+    text-align: right;
+    margin-right: 10%;
+    font-size: 36px;
+}
+
+.carousel-button {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    margin: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    display: inline-flex;
+    align-items: flex-start;
+}
+
+.scare {
+    text-decoration-line: line-through;
+}
+
+.index-carousel-controls {
+    margin-right: 10%;
+    text-align: right;
+}
+
+.index-hope-text {
+    color: #fff;
+    font-family: SF Pro Display;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.index-hope-class {
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    background: linear-gradient(
+        89deg,
+        #ff6d88 7.39%,
+        #ffa572 54.22%,
+        #c059ff 99.13%
+    );
+    background-clip: text;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.index-carousel-card {
+    width: 412px;
+}
