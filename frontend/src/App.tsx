@@ -28,7 +28,6 @@ function App() {
             {/* protected routes */}
             <Route element={<RequireAuth />}>
                 <Route path="/me" element={<ProfilePage />} />
-                <Route path="/add_hack" element={<AddHackPage />} />
                 <Route path="/hacks/:hackId/add" element={<AddHackPage />} />
                 <Route path="/survey" element={<SignUpSurveyPage />} />
                 <Route path="/users/:userId" element={<DetailUserPage />} />

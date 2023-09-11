@@ -1,8 +1,20 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-export default function DataBox(props: { text: string; fontSize: number }) {
+export default function DataBox(props: {
+    text: string;
+    fontSize: number;
+    link_url: string | null | undefined;
+}) {
+    const navigate = useNavigate();
+
+    function handleSubmit() {
+        if (props.link_url) {
+            navigate(props.link_url);
+        }
+    }
     return (
-        <Box
+        <Button
             sx={{
                 textAlign: "center",
                 backgroundColor: "#C059FF1F",
@@ -13,6 +25,7 @@ export default function DataBox(props: { text: string; fontSize: number }) {
                 maxWidth: "250px",
                 minWidth: "250px",
             }}
+            onClick={handleSubmit}
         >
             <p
                 style={{
@@ -22,6 +35,10 @@ export default function DataBox(props: { text: string; fontSize: number }) {
             >
                 {props.text}
             </p>
-        </Box>
+        </Button>
     );
 }
+
+DataBox.defaultProps = {
+    link_url: null,
+};

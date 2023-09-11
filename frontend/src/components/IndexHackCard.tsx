@@ -20,8 +20,6 @@ interface IndexHackCardProps {
 export default function IndexHackCard(props: IndexHackCardProps) {
     const navigate = useNavigate();
     const { hack, findTeam } = props;
-    console.log("Card");
-    console.log(hack);
 
     function handleFindTeam() {
         console.log("searching for a team");

@@ -1,18 +1,24 @@
 import { Box, Stack } from "@mui/material";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import API_HOST from "../app/api/api";
+import { User } from "../types";
+import DataBox from "./DataBox";
 
-interface TeamMember {
-    tg_username: string;
-    role: string;
-}
+// interface TeamMember {
+//     tg_username: string;
+//     role: string;
+// }
 
 interface TeamInviteCardProps {
     hackathonName: string;
     teamName: string;
-    members: TeamMember[];
+    members: User[];
 }
 
 export default function TeamInviteCard(props: TeamInviteCardProps) {
     const { hackathonName, teamName, members } = props;
+    console.log(members);
     return (
         <Box
             sx={{
@@ -74,15 +80,16 @@ export default function TeamInviteCard(props: TeamInviteCardProps) {
                     </p>
                 </Box>
                 <Box>
-                    {members.map((member) => {
+                    {members.map((member: User) => {
                         return (
                             <Box
+                                key={member.id}
                                 sx={{
                                     display: "flex",
                                     alignItems: "center",
                                 }}
                             >
-                                <Box
+                                {/* <Box
                                     sx={{
                                         backgroundColor: "#c059ff29",
                                         borderRadius: 2,
@@ -104,19 +111,25 @@ export default function TeamInviteCard(props: TeamInviteCardProps) {
                                     >
                                         @{member.tg_username}
                                     </p>
-                                </Box>
-                                <p
-                                    style={{
-                                        color: "#fff",
-                                        textAlign: "center",
-                                        fontSize: "12px",
-                                        fontStyle: "normal",
-                                        fontWeight: 400,
-                                        lineHeight: "normal",
-                                    }}
-                                >
-                                    {member.role}
-                                </p>
+                                </Box> */}
+                                <DataBox
+                                    text={`@${member.tg_username}`}
+                                    link_url={`/users/${member.id}`}
+                                />
+                                {member.roles.length > 0 && (
+                                    <p
+                                        style={{
+                                            color: "#fff",
+                                            textAlign: "center",
+                                            fontSize: "12px",
+                                            fontStyle: "normal",
+                                            fontWeight: 400,
+                                            lineHeight: "normal",
+                                        }}
+                                    >
+                                        {member.roles[0].role_name}
+                                    </p>
+                                )}
                             </Box>
                         );
                     })}

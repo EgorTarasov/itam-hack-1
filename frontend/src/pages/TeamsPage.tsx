@@ -38,7 +38,7 @@ export default function TeamsPage() {
                         paddingTop: "8px",
                         marginBottom: "32px",
                     }}
-                    onClick={handleBackButton}
+                    onClick={() => navigate(-1)}
                 >
                     <svg
                         width="9"

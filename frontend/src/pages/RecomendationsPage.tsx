@@ -155,6 +155,7 @@ function HackEnrollmentCard(props: { hack: ApiResponse }) {
 export default function RecomendationsPage() {
     const [myHacks, setMyhacks] = useState<ApiResponse[]>([]);
     const [currentHacks, setCurrentHacks] = useState<Hackathon[]>([]);
+    const [invites, setInvites] = useState<any[]>([]);
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -166,19 +167,31 @@ export default function RecomendationsPage() {
         axios
             .get(API_HOST + "/api/v1/hackathons/teams/my", config)
             .then((response) => {
-                console.log(response.data);
                 setMyhacks([response.data, response.data, response.data]);
+            })
+            .catch((e) => {
+                console.error(e);
             });
         axios
             .get(API_HOST + "/api/v1/hackathons/upcoming", config)
             .then((response) => {
-                console.log(response.data);
                 setCurrentHacks(response.data);
+            })
+            .catch((e) => {
+                console.error(e);
+            });
+
+        axios
+            .get(API_HOST + "/api/v1/users/invites", config)
+            .then((response) => {
+                setInvites(response.data);
+            })
+            .catch((e) => {
+                console.error(e);
             });
     }, []);
 
-    useEffect(() => {}, [myHacks]);
-    useEffect(() => {}, [currentHacks]);
+    useEffect(() => {}, [currentHacks, myHacks, invites]);
 
     return (
         <>
@@ -216,16 +229,19 @@ export default function RecomendationsPage() {
                 >
                     Приглашения в команды
                 </h1>
-                <TeamInviteCard
-                    hackathonName="ITAM.HACK"
-                    teamName="Hilbert Space"
-                    members={[
-                        {
-                            role: "Фуллстек-разработчик, капитан",
-                            tg_username: "tarasov_egor",
-                        },
-                    ]}
-                />
+                {invites && (
+                    <Stack>
+                        {invites.map((invite) => {
+                            return (
+                                <TeamInviteCard
+                                    hackathonName="ITAM.HACK"
+                                    teamName={invite.title}
+                                    members={invite.members}
+                                />
+                            );
+                        })}
+                    </Stack>
+                )}
 
                 <h1
                     style={{
@@ -240,7 +256,6 @@ export default function RecomendationsPage() {
                 {currentHacks.length > 0 && (
                     <Grid container spacing={4} lg={12}>
                         {currentHacks.map((hack, i) => {
-                            console.log(i, hack);
                             return (
                                 <Grid item xs={12} lg={3}>
                                     <IndexHackCard hack={hack} findTeam />
@@ -252,4 +267,110 @@ export default function RecomendationsPage() {
             </Box>
         </>
     );
+}
+
+{
+    /* 
+                    полуичть инвайты  /api/v1/users/invites
+                    [
+                        {
+                            "hackathon_id": 1,
+                            "title": "Команда 1",
+                            "description": "Описание команды",
+                            "required_members": 3,
+                            "id": 1,
+                            "leader_id": 1,
+                            "members": [
+                                {
+                                    "id": 1,
+                                    "email": "test@test.com",
+                                    "first_name": "Евгений",
+                                    "last_name": "Гуров",
+                                    "internal_role": "admin",
+                                    "level": 4.7,
+                                    "tg_username": "yogenyslav",
+                                    "graduation_year": "2024-01-01",
+                                    "image_url": "http://localhost:9999/static/avatar_photo.jpg",
+                                    "skills": [],
+                                    "roles": [
+                                        {
+                                            "id": 1,
+                                            "role_name": "Графический дизайнер"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "role_name": "Проджект-менеджер"
+                                        },
+                                        {
+                                            "id": 4,
+                                            "role_name": "Фронтенд разработчик"
+                                        }
+                                    ],
+                                    "goals": [
+                                        {
+                                            "id": 1,
+                                            "goal_name": "Получить опыт"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "goal_name": "Найти единомышленников"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": 2,
+                                    "email": "test99@test.com",
+                                    "first_name": "Ласурия",
+                                    "last_name": "Роберт",
+                                    "internal_role": "student",
+                                    "level": 0.0,
+                                    "tg_username": "@tets12312",
+                                    "graduation_year": null,
+                                    "image_url": null,
+                                    "skills": [],
+                                    "roles": [
+                                        {
+                                            "id": 1,
+                                            "role_name": "Графический дизайнер"
+                                        }
+                                    ],
+                                    "goals": [
+                                        {
+                                            "id": 2,
+                                            "goal_name": "Найти единомышленников"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": 3,
+                                    "email": "test2@test.com",
+                                    "first_name": "Денис",
+                                    "last_name": "Трипольский",
+                                    "internal_role": "student",
+                                    "level": 0.0,
+                                    "tg_username": null,
+                                    "graduation_year": null,
+                                    "image_url": null,
+                                    "skills": [],
+                                    "roles": [],
+                                    "goals": []
+                                }
+                            ],
+                            "required_roles": [
+                                {
+                                    "id": 9,
+                                    "role_name": "Бэкенд разработчик"
+                                },
+                                {
+                                    "id": 10,
+                                    "role_name": "Fullstack разработчик"
+                                },
+                                {
+                                    "id": 11,
+                                    "role_name": "ML-разработчик"
+                                }
+                            ]
+                        }
+                    ]
+                */
 }
